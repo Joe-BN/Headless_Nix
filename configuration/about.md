@@ -1,3 +1,4 @@
 System's configuration structure
 
-(hardware.nix is auto generated)
+
+Use the guide.txt file to help adapt for your machine
