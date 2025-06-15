@@ -7,7 +7,9 @@
     ];
 
   # Bootloader.
-  boot.loader.grub.enable = true;
+  #boot.loader.grub.enable = true;
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.grub.device = "/dev/sda";
   boot.loader.grub.useOSProber = true;
 
@@ -50,6 +52,18 @@
 
   ];
 
+  # Nix Flakes
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
+
+  # Neovim
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+  };
+
   # Docker
   virtualisation.docker = {
     enable = true;
@@ -58,7 +72,7 @@
   # SSH
   services.openssh = {
     enable = true;
-    ports = [213];
+    ports = [214];
     settings = {
       PermitRootLogin = "no";
       PasswordAuthentication = true;
@@ -69,13 +83,13 @@
   networking.firewall = {
     enable = true;
     allowedTCPPorts = [
-      213        # ssh local
+      214        # ssh local
     ];
     allowedUDPPorts = [
-    
+
     ];
   };
-  
+
   # Keep awake
   services.logind.extraConfig = ''
     HandleLidSwitch=ignore
@@ -88,7 +102,7 @@
   services.fail2ban.enable = true;
 
 
-  # Garbage collection  
+  # Garbage collection
   nix.gc = {
     automatic = true;
     dates = "weekly";
