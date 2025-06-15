@@ -75,6 +75,14 @@
     
     ];
   };
+  
+  # Keep awake
+  services.logind.extraConfig = ''
+    HandleLidSwitch=ignore
+    HandleLidSwitchDocked=ignore
+    IdleAction=ignore
+  '';
+
 
   # Security
   services.fail2ban.enable = true;
